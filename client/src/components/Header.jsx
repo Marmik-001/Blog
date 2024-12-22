@@ -13,10 +13,10 @@ export default function Header() {
         <span className="px-2 bg-emerald-400 rounded-md mr-1">Master's</span>
         Blog
       </Link>
-      <form className="bg-emerald-100 text-slate-800 px-2   rounded-lg">
+      <form className="bg-emerald-100 text-slate-800 px-2 pt-1  rounded-lg">
         <input
           type="text"
-          className="bg-emerald-100 w-14 sm:w-24 lg:w-28 xl:w-40 text-slate-800"
+          className="bg-emerald-100 cursor-text focus:outline-none place-self-center  w-14 sm:w-24 lg:w-28 xl:w-40  text-slate-800"
           placeholder="Search.."
         />
         <button className="self-center w-8 h-7 align-middle place-self-center ml-3 sm:h-5">
