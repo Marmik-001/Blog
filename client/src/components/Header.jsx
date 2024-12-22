@@ -25,13 +25,13 @@ export default function Header() {
       </form>
       <div className={menu ? "md:inline hidden " : "block"}>
         <div className=" hidden md:block">
-          <Link className="px-3 lg:px-10  text-emerald-700 font-semibold ">
+          <Link to="/" className="px-3 lg:px-10  text-emerald-700 font-semibold ">
             Home
           </Link>
-          <Link className="px-3 lg:px-10 text-emerald-700 font-semibold">
+          <Link to="/about" className="px-3 lg:px-10 text-emerald-700 font-semibold">
             About
           </Link>
-          <Link className="pl-3 pr-2 lg:px-10 text-emerald-700 font-semibold">
+          <Link to="/projects" className="pl-3 pr-2 lg:px-10 text-emerald-700 font-semibold">
             Projects
           </Link>
         </div>
@@ -42,7 +42,7 @@ export default function Header() {
           <FaMoon className="" style={iconStyles} />
         </button>
         <button className="bg-emerald-400 sm:py-1 px-4 ml-4 rounded-md align-middle">
-          Sign In
+        <Link to='/sign-in'>  Sign In </Link>
         </button>
       </div>
       <button className="md:hidden" onClick={() => setMenu((prev) => !prev)}>
@@ -53,13 +53,13 @@ export default function Header() {
           menu ? "showmenu absolute top-12 pb-4 pt-2 border-green-600 right-2 mt-2 text-center border-2 bg-emerald-200 w-32 flex flex-col gap-2 md:hidden " : "hidemenu"
         }
       >
-      <div>  <Link className="px-3 lg:px-10 border-b-2 border-b-green-700 text-emerald-700 font-semibold ">
+      <div>  <Link to="/" className="px-3 lg:px-10 border-b-2 border-b-green-700 text-emerald-700 font-semibold ">
           Home
         </Link> </div>
-       <div> <Link className="px-3 lg:px-10  border-b-2 border-b-green-700 text-emerald-700 font-semibold">
+       <div> <Link to="/about" className="px-3 lg:px-10  border-b-2 border-b-green-700 text-emerald-700 font-semibold">
           About
         </Link> </div>
-       <div><Link className="pl-3 pr-2 lg:px-10  border-b-2 border-b-green-700 text-emerald-700 font-semibold ">
+       <div><Link to="/projects" className="pl-3 pr-2 lg:px-10  border-b-2 border-b-green-700 text-emerald-700 font-semibold ">
           Projects
         </Link></div>
       </div>
