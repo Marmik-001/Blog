@@ -8,38 +8,38 @@ export default function Header() {
   const [menu, setMenu] = useState(false);
   console.log(menu);
   return (
-    <nav className="border-b-2 mb-1 pb-2 p-3 flex flex-row justify-between">
+    <nav className="border-b-2 mb-1 pb-2 p-3 flex flex-row justify-between bg-emerald-50 dark:bg-black">
       <Link to="/" className="sm:text-xl mr-10  text-black ">
         <span className="px-2 bg-emerald-400 rounded-md mr-1">Master's</span>
-        Blog
+        <span className="dark:text-white">Blog</span>
       </Link>
-      <form className="bg-emerald-100 text-slate-800 px-2 pt-1  rounded-lg">
+      <form className="bg-emerald-100 dark:bg-emerald-400 text-slate-800 px-2 pt-1  rounded-lg">
         <input
           type="text"
-          className="bg-emerald-100 cursor-text focus:outline-none place-self-center  w-14 sm:w-24 lg:w-28 xl:w-40  text-slate-800"
+          className="bg-emerald-100 cursor-text dark:bg-emerald-400 focus:outline-none place-self-center dark:placeholder-black w-14 sm:w-24 lg:w-28 xl:w-40  text-slate-800"
           placeholder="Search.."
         />
         <button className="self-center w-8 h-7 align-middle place-self-center ml-3 sm:h-5">
           <LiaSearchSolid />
         </button>
       </form>
-      <div className={menu ? "md:inline hidden " : "block"}>
+      <div >
         <div className=" hidden md:block">
           <Link
             to="/"
-            className="px-3 lg:px-10  text-emerald-700 font-semibold "
+            className="px-3 lg:px-10  text-emerald-700 dark:text-emerald-200 font-semibold "
           >
             Home
           </Link>
           <Link
             to="/about"
-            className="px-3 lg:px-10 text-emerald-700 font-semibold"
+            className="px-3 lg:px-10 text-emerald-700 dark:text-emerald-200 font-semibold"
           >
             About
           </Link>
           <Link
             to="/projects"
-            className="pl-3 pr-2 lg:px-10 text-emerald-700 font-semibold"
+            className="pl-3 pr-2 lg:px-10 text-emerald-700 dark:text-emerald-200 font-semibold"
           >
             Projects
           </Link>
@@ -60,15 +60,15 @@ export default function Header() {
       <div
         className={
           menu
-            ? "showmenu absolute top-12 pb-4 pt-2 border-green-600 right-2 mt-2 text-center border-2 bg-emerald-200 w-32 flex flex-col gap-2 md:hidden "
-            : "hidemenu"
+            ? " absolute top-11 pb-4  pt-2 border-green-600 right-0 mt-2 text-center border-2 dark:bg-slate-800  bg-emerald-200 w-36 flex flex-col gap-2 md:hidden "
+            : "hidden"
         }
       >
         <div>
           {" "}
           <Link
             to="/"
-            className="px-3 lg:px-10 border-b-2 border-b-green-700 text-emerald-700 font-semibold "
+            className="px-3 pb-1  lg:px-10 border-b-2  border-b-green-700 text-emerald-700 dark:text-emerald-200 font-semibold "
           >
             Home
           </Link>{" "}
@@ -77,7 +77,7 @@ export default function Header() {
           {" "}
           <Link
             to="/about"
-            className="px-3 lg:px-10  border-b-2 border-b-green-700 text-emerald-700 font-semibold"
+            className="px-3 pb-1 lg:px-10  border-b-2 border-b-green-700 text-emerald-700 dark:text-emerald-200 font-semibold"
           >
             About
           </Link>{" "}
@@ -85,23 +85,14 @@ export default function Header() {
         <div>
           <Link
             to="/projects"
-            className="pl-3 pr-2 lg:px-10  border-b-2 border-b-green-700 text-emerald-700 font-semibold "
+            className="pl-3 pr-2 pb-1  lg:px-10  border-b-2 border-b-green-700 text-emerald-700 dark:text-emerald-200 font-semibold "
           >
             Projects
           </Link>
         </div>
       </div>
 
-      <style>{`
-        .showmenu{
-
-        }
-        .hidemenu{
-        display:none;
-        
-
-        }
-    `}</style>
+      
     </nav>
   );
 }
