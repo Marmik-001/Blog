@@ -3,6 +3,7 @@ import { configDotenv } from "dotenv";
 import mongoose from "mongoose";
 import userRoutes from './routes/user.route.js'
 import auth from './routes/auth.route.js'
+import { handleUserSignUpError } from "./middlewares/userError.middleware.js";
 configDotenv();
 const MONGO_URI = process.env.MONGO_URI || "";
 mongoose
@@ -12,6 +13,7 @@ mongoose
 
 const app = express();
 app.use(express.json())
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`server run on PORT ${PORT}`);
@@ -19,3 +21,4 @@ app.listen(PORT, () => {
 
 app.use('/api/user' ,userRoutes)
 app.use('/api/auth' , auth)
+// app.use(handleUserSignUpError)
