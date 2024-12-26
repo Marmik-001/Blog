@@ -12,8 +12,7 @@ export const signup = async (request, response, next) => {
     email === "" ||
     password === ""
   ) {
-    next(handleError(400 , 'All fields are required'))
-
+    next(handleError(400, "All fields are required"));
   }
   const hashed_password = await hashPassword(password);
   const newUser = new User({
@@ -28,7 +27,7 @@ export const signup = async (request, response, next) => {
   } catch (error) {
     // response.status(400).send(error.errmsg);
     // console.log(error);
-    
-    next(error)
+
+    next(error);
   }
 };
