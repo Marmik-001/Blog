@@ -6,7 +6,6 @@ import { GiHamburgerMenu } from "react-icons/gi";
 export default function Header() {
   let iconStyles = { color: "#34D399", fontSize: "1.2em" };
   const [menu, setMenu] = useState(false);
-  console.log(menu);
   return (
     <nav className="border-b-2 border-b-emerald-500  p-4 flex flex-row justify-between bg-emerald-50 dark:bg-black">
       <Link to="/" className="sm:text-xl mr-10  text-black ">

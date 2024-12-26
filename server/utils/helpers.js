@@ -8,7 +8,7 @@ export const hashPassword = async (password) => {
       return hashedPassword;
     } catch (error) {
       console.error('Error hashing password:', error);
-      throw new Error('Error hashing password');
+      throw new Error('Error hashing password')
     }
 };
 
