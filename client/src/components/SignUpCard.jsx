@@ -16,7 +16,8 @@ export default function SignUpCard() {
     try {
       if (!formData.username || !formData.email || !formData.password) {
         setErrormsg("All fields are required !");
-        
+        setLoading(false)
+        return
       }
       const response = await axios.post("/api/auth/signup", formData);
       const status = response.status;

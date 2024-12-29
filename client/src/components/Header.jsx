@@ -59,7 +59,7 @@ export default function Header() {
       <div
         className={
           menu
-            ? " absolute top-11 pb-4  pt-2 border-green-600 right-0 mt-2 text-center border-2 dark:bg-slate-800  bg-emerald-200 w-36 flex flex-col gap-2 md:hidden "
+            ? " absolute top-[51px] pb-4  pt-2 border-emerald-500 right-0 mt-2 text-center border-2 dark:bg-black  bg-emerald-200 w-36 flex flex-col gap-2 md:hidden "
             : "hidden"
         }
       >
