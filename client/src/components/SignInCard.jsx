@@ -7,13 +7,14 @@ import {
   signInSuccess,
   signInStart,
 } from "../redux/user/userSlice";
+
 export default function SignUpCard() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   // const [errormsg, setErrormsg] = useState(null);
   // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-
+  const {loading , error:errormsg} = useSelector((state) => state.user)
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
