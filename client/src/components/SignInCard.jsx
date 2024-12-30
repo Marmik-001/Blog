@@ -1,34 +1,46 @@
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  signInFailure,
+  signInSuccess,
+  signInStart,
+} from "../redux/user/userSlice";
 export default function SignUpCard() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({});
-  const [errormsg, setErrormsg] = useState(null);
-  const [loading, setLoading] = useState(false);
+  // const [errormsg, setErrormsg] = useState(null);
+  // const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
+
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrormsg(null);
-    setLoading(true);
+    // setErrormsg(null);
+    // setLoading(true);
+    dispatch(signInStart());
     try {
       if (!formData.email || !formData.password) {
-        setErrormsg("All fields are required !");
-        setLoading(false);
+        // setErrormsg("All fields are required !");
+        // setLoading(false);
+        dispatch(signInFailure("All fields are required !"))
         return;
       }
       const response = await axios.post("/api/auth/signin", formData);
       const status = response.status;
       // console.log(status);
 
-      if (status === 201) console.log("signin successful");
+      if (status === 200) console.log(response.data);
       navigate("/");
-      setLoading(false);
+      // setLoading(false);
+      dispatch(signInSuccess(response.data))
     } catch (error) {
-      setErrormsg(error.response.data.message);
-      setLoading(false);
+      // setErrormsg(error.response.data.message);
+      // setLoading(false);
+      dispatch(signInFailure(error.response.data.message))
     }
   };
 
