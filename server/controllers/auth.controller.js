@@ -58,3 +58,7 @@ export const signin = async (request, response, next) => {
     next(error);
   }
 };
+
+export const signout = async (request, response, next) => {
+  response.cookie('access_token', '', { expires: new Date(Date.now() + 1), httpOnly: true }).send('User signed out');
+}
