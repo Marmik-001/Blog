@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
+import OAuth from "./OAuth";
 export default function SignUpCard() {
   const navigate = useNavigate()
   const [formData, setFormData] = useState({});
@@ -80,6 +81,7 @@ export default function SignUpCard() {
           >
           {loading ? (<div>Loading...</div>) : 'Sign Up'}
           </button>
+          <OAuth />
         </div>
       </form>
       <div></div>

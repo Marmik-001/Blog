@@ -7,6 +7,7 @@ import {
   signInSuccess,
   signInStart,
 } from "../redux/user/userSlice";
+import OAuth from "./OAuth";
 
 export default function SignUpCard() {
   const navigate = useNavigate();
@@ -82,6 +83,7 @@ export default function SignUpCard() {
           >
             {loading ? <div>Loading...</div> : "Sign Up"}
           </button>
+          <OAuth />
         </div>
       </form>
       <div></div>
