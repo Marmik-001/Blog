@@ -1,23 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { LiaSearchSolid } from "react-icons/lia";
-import { FaMoon , FaSun} from "react-icons/fa";
+import { FaMoon, FaSun } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useSelector , useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { toggleTheme } from "../redux/theme/themeSlice";
 import DropDown from "./DropDown";
 export default function Header() {
   let iconStyles = { color: "#34D399", fontSize: "1.2em" };
   const [menu, setMenu] = useState(false);
-  const { currentUser } = useSelector(state => state.user)
-  const {currentTheme} = useSelector(state => state.theme)
-  const dispatch = useDispatch()
+  const { currentUser } = useSelector((state) => state.user);
+  const { currentTheme } = useSelector((state) => state.theme);
+  const dispatch = useDispatch();
   useEffect(() => {
     const root = document.documentElement;
-    if (currentTheme === 'dark') {
-      root.classList.add('dark');
+    if (currentTheme === "dark") {
+      root.classList.add("dark");
     } else {
-      root.classList.remove('dark');
+      root.classList.remove("dark");
     }
   }, [currentTheme]);
   return (
@@ -36,7 +36,7 @@ export default function Header() {
           <LiaSearchSolid />
         </button>
       </form>
-      <div >
+      <div>
         <div className=" hidden md:block">
           <Link
             to="/"
@@ -61,17 +61,22 @@ export default function Header() {
 
       <div className=" flex flex-row">
         <button
-        onClick={() => dispatch(toggleTheme())}
-        className=" dark:bg-black bg-emerald-50  align-middle">
-          
-          { currentTheme === 'light' ? <FaMoon className="" style={iconStyles} /> : <FaSun className="" style={iconStyles} />}
+          onClick={() => dispatch(toggleTheme())}
+          className=" dark:bg-black bg-emerald-50  align-middle"
+        >
+          {currentTheme === "light" ? (
+            <FaMoon className="" style={iconStyles} />
+          ) : (
+            <FaSun className="" style={iconStyles} />
+          )}
         </button>
-        {currentUser ? <DropDown  /> : 
-         (<button className="bg-emerald-400 sm:py-1 px-4 ml-4 rounded-md align-middle">
-        <Link to="/sign-up"> Sign In </Link>
-      </button> )
-      }
-        
+        {currentUser ? (
+          <DropDown />
+        ) : (
+          <button className="bg-emerald-400 sm:py-1 px-4 ml-4 rounded-md align-middle">
+            <Link to="/sign-up"> Sign In </Link>
+          </button>
+        )}
       </div>
       <button className="md:hidden" onClick={() => setMenu((prev) => !prev)}>
         <GiHamburgerMenu style={iconStyles} />
@@ -110,8 +115,6 @@ export default function Header() {
           </Link>
         </div>
       </div>
-
-      
     </nav>
   );
 }
