@@ -1,14 +1,25 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { LiaSearchSolid } from "react-icons/lia";
-import { FaMoon } from "react-icons/fa";
+import { FaMoon , FaSun} from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
-import { useSelector } from "react-redux";
+import { useSelector , useDispatch } from "react-redux";
+import { toggleTheme } from "../redux/theme/themeSlice";
 import DropDown from "./DropDown";
 export default function Header() {
   let iconStyles = { color: "#34D399", fontSize: "1.2em" };
   const [menu, setMenu] = useState(false);
   const { currentUser } = useSelector(state => state.user)
+  const {currentTheme} = useSelector(state => state.theme)
+  const dispatch = useDispatch()
+  useEffect(() => {
+    const root = document.documentElement;
+    if (currentTheme === 'dark') {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [currentTheme]);
   return (
     <nav className="border-b-2 border-b-emerald-500  p-4 flex flex-row justify-between bg-emerald-50 dark:bg-black">
       <Link to="/" className="sm:text-xl mr-10  text-black ">
@@ -49,8 +60,11 @@ export default function Header() {
       </div>
 
       <div className=" flex flex-row">
-        <button className=" dark:bg-black bg-white align-middle">
-          <FaMoon className="" style={iconStyles} />
+        <button
+        onClick={() => dispatch(toggleTheme())}
+        className=" dark:bg-black bg-emerald-50  align-middle">
+          
+          { currentTheme === 'light' ? <FaMoon className="" style={iconStyles} /> : <FaSun className="" style={iconStyles} />}
         </button>
         {currentUser ? <DropDown  /> : 
          (<button className="bg-emerald-400 sm:py-1 px-4 ml-4 rounded-md align-middle">
@@ -65,7 +79,7 @@ export default function Header() {
       <div
         className={
           menu
-            ? " absolute top-[51px] pb-4  pt-2 border-emerald-500 right-0 mt-2 text-center border-2 dark:bg-black  bg-emerald-200 w-36 flex flex-col gap-2 md:hidden "
+            ? " absolute top-[55px] pb-4   pt-2 border-emerald-500 right-0 mt-2 text-center border-2 dark:bg-black  bg-emerald-200 w-36 flex flex-col gap-2 md:hidden "
             : "hidden"
         }
       >
