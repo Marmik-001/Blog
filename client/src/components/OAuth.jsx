@@ -2,14 +2,13 @@ import { AiOutlineGoogle } from "react-icons/ai";
 import { GoogleAuthProvider, signInWithPopup, getAuth } from "firebase/auth";
 import { app } from "../firebase";
 import axios from "axios";
-import { useDispatch  } from "react-redux";
+import { useDispatch } from "react-redux";
 import { signInSuccess } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
 export default function OAuth() {
-
   const auth = getAuth(app);
-  const navigate = useNavigate()
-  const dispatch=  useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const handleGoogleClick = async () => {
     const provider = new GoogleAuthProvider();
     provider.getCustomParameters({ prompt: "select-account" });
@@ -24,10 +23,8 @@ export default function OAuth() {
       const response = await axios.post("/api/auth/google", data);
       console.log(response.status);
       if (response.status) {
-
-        
-        dispatch(signInSuccess(response.data))
-        navigate('/')
+        dispatch(signInSuccess(response.data));
+        navigate("/");
       }
     } catch (error) {
       console.log(error);

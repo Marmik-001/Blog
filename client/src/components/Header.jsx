@@ -3,9 +3,12 @@ import { Link } from "react-router-dom";
 import { LiaSearchSolid } from "react-icons/lia";
 import { FaMoon } from "react-icons/fa";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { useSelector } from "react-redux";
+import DropDown from "./DropDown";
 export default function Header() {
   let iconStyles = { color: "#34D399", fontSize: "1.2em" };
   const [menu, setMenu] = useState(false);
+  const { currentUser } = useSelector(state => state.user)
   return (
     <nav className="border-b-2 border-b-emerald-500  p-4 flex flex-row justify-between bg-emerald-50 dark:bg-black">
       <Link to="/" className="sm:text-xl mr-10  text-black ">
@@ -45,13 +48,16 @@ export default function Header() {
         </div>
       </div>
 
-      <div className=" ">
+      <div className=" flex flex-row">
         <button className=" dark:bg-black bg-white align-middle">
           <FaMoon className="" style={iconStyles} />
         </button>
-        <button className="bg-emerald-400 sm:py-1 px-4 ml-4 rounded-md align-middle">
-          <Link to="/sign-up"> Sign In </Link>
-        </button>
+        {currentUser ? <DropDown  /> : 
+         (<button className="bg-emerald-400 sm:py-1 px-4 ml-4 rounded-md align-middle">
+        <Link to="/sign-up"> Sign In </Link>
+      </button> )
+      }
+        
       </div>
       <button className="md:hidden" onClick={() => setMenu((prev) => !prev)}>
         <GiHamburgerMenu style={iconStyles} />

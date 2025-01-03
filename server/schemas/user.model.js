@@ -17,15 +17,15 @@ const userSchema = mongoose.Schema(
       required: true,
     },
     profilePicture: {
-      type: String ,
-      default:'https://amaxfireandsecurity.co.uk/wp-content/uploads/2023/12/profile-pic-MD.jpg'
-    }
+      type: String,
+      default:
+        "https://amaxfireandsecurity.co.uk/wp-content/uploads/2023/12/profile-pic-MD.jpg",
+    },
   },
   {
     timestamps: true,
   }
 );
 
-
-const User = mongoose.model('User' , userSchema)
-export default User
+const User = mongoose.model("User", userSchema);
+export default User;
