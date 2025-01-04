@@ -40,10 +40,10 @@ function Footer() {
           <h3 className="text-gray-500 mb-4"> © 2024 Master's Blog</h3>
         </div>
         <div className="flex flex-row gap-10  text-2xl">
-        <FaDiscord />
-        <FaInstagram />
-        < FaGithub/>
-        <FaLinkedin />
+          <FaDiscord />
+          <FaInstagram />
+          <FaGithub />
+          <FaLinkedin />
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ const firebaseConfig = {
   projectId: "mern-blog-master",
   storageBucket: "mern-blog-master.firebasestorage.app",
   messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_APP_ID
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase

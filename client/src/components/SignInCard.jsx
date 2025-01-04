@@ -15,7 +15,7 @@ export default function SignUpCard() {
   // const [errormsg, setErrormsg] = useState(null);
   // const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
-  const {loading , error:errormsg} = useSelector((state) => state.user)
+  const { loading, error: errormsg } = useSelector((state) => state.user);
   const handleOnChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value.trim() });
   };
@@ -28,7 +28,7 @@ export default function SignUpCard() {
       if (!formData.email || !formData.password) {
         // setErrormsg("All fields are required !");
         // setLoading(false);
-        dispatch(signInFailure("All fields are required !"))
+        dispatch(signInFailure("All fields are required !"));
         return;
       }
       const response = await axios.post("/api/auth/signin", formData);
@@ -38,11 +38,11 @@ export default function SignUpCard() {
       if (status === 200) console.log(response.data);
       navigate("/");
       // setLoading(false);
-      dispatch(signInSuccess(response.data))
+      dispatch(signInSuccess(response.data));
     } catch (error) {
       // setErrormsg(error.response.data.message);
       // setLoading(false);
-      dispatch(signInFailure(error.response.data.message))
+      dispatch(signInFailure(error.response.data.message));
     }
   };
 

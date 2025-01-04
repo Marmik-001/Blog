@@ -63,8 +63,12 @@ function DropDown() {
                 >
                   Profile
                 </Link>
-                <button  className="text-gray-700 flex dark:text-white justify-between w-full px-4 py-2 text-sm leading-5 text-left cursor-pointer  hover:border-l-[3px] hover:border-l-emerald-500"
-                  role="menuitem">Sign Out</button>
+                <button
+                  className="text-gray-700 flex dark:text-white justify-between w-full px-4 py-2 text-sm leading-5 text-left cursor-pointer  hover:border-l-[3px] hover:border-l-emerald-500"
+                  role="menuitem"
+                >
+                  Sign Out
+                </button>
               </div>
             </div>
           </div>

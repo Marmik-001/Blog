@@ -3,7 +3,7 @@ import axios, { AxiosError } from "axios";
 import { useNavigate } from "react-router-dom";
 import OAuth from "./OAuth";
 export default function SignUpCard() {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({});
   const [errormsg, setErrormsg] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -17,22 +17,22 @@ export default function SignUpCard() {
     try {
       if (!formData.username || !formData.email || !formData.password) {
         setErrormsg("All fields are required !");
-        setLoading(false)
-        return
+        setLoading(false);
+        return;
       }
       const response = await axios.post("/api/auth/signup", formData);
       const status = response.status;
       // console.log(status);
-      
+
       if (status === 201) console.log("signup successful");
-      navigate('/sign-in')
+      navigate("/sign-in");
       setLoading(false);
     } catch (error) {
       setErrormsg(error.response.data.message);
-      setLoading(false)
+      setLoading(false);
     }
   };
-  
+
   return (
     <div className="flex flex-col gap-4">
       <form
@@ -79,7 +79,7 @@ export default function SignUpCard() {
             disabled={loading}
             className="border-emerald-300 bg-black text-emerald-200 dark:text-white active:scale-95  border-2 w-full py-2 mt-2 dark:bg-gradient-to-b dark:from-emerald-300 dark:to-emerald-600 rounded-lg text-xl"
           >
-          {loading ? (<div>Loading...</div>) : 'Sign Up'}
+            {loading ? <div>Loading...</div> : "Sign Up"}
           </button>
           <OAuth />
         </div>
