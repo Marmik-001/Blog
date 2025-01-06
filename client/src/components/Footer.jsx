@@ -5,7 +5,7 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 function Footer() {
   return (
-    <div className="bg-emerald-50 dark:bg-black flex flex-col border-t-2 border-t-emerald-600 ">
+    <div className="bg-emerald-50 dark:bg-black flex flex-col border-t-2 border-t-emerald-600 dark:border-t-emerald-500">
       <div className="mb-4 mt-8">
         <Link to="/" className=" sm:text-xl  ml-2 text-black ">
           <span className="px-2 bg-emerald-400 rounded-md mr-1">Master's</span>

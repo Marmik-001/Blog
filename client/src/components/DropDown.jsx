@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 function DropDown() {
   const currentUser = useSelector((state) => state.user);
-  console.log("current user : ", currentUser); // Log the profilePicture property
+  // console.log("current user : ", currentUser); // Log the profilePicture property
   const profilePicture = currentUser.currentUser.profilePicture;
-  const displayName = currentUser.currentUser.displayName;
+  
   const username = currentUser.currentUser.username;
   const email = currentUser.currentUser.email;
 
@@ -32,7 +32,7 @@ function DropDown() {
               <img
                 src={profilePicture}
                 className="rounded-full border-2 border-emerald-300 p-0.5"
-                alt={displayName}
+                alt={username}
               />
             </button>
           </span>
