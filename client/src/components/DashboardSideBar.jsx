@@ -57,7 +57,7 @@ export default function DashboardSideBar({setTab}) {
     const username = currentUser.username;
     const email = currentUser.email;
   return (
-    <nav className={`shadow-md h-screen p-2 flex flex-col duration-500 bg-emerald-50 text-black dark:text-emerald-200 dark:bg-black ${open ? 'w-60' : 'w-16'}`}>
+    <nav className={`shadow-md h-screen p-2 flex flex-col duration-500 bg-emerald-50 text-black dark:text-emerald-200 border-r-emerald-500 border-r-2 rounded-tr-lg dark:bg-black ${open ? 'w-60' : 'w-16'}`}>
 
       {/* Header */}
       <div className=' px-3 py-2 h-20 flex justify-between items-center'>

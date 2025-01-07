@@ -19,7 +19,7 @@ export default function Dashboard() {
     <div>
     <DashboardSideBar setTab={setTab}/>
     </div>
-    <div>
+    <div className="w-full">
       {tab === 'profile' && <DashboardProfile /> }
     </div>
   </div>;
