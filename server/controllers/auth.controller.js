@@ -81,7 +81,7 @@ export const google = async (request, response, next) => {
       console.log("signed in using google");
       response
         .status(200)
-        .cookie("access-token", token, { httpOnly: true })
+        .cookie("access_token", token, { httpOnly: true })
         .json(rest);
     } else {
       const generatedPassword = email + process.env.JWT_SECRET;
