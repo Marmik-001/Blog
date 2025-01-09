@@ -1,4 +1,4 @@
-import React, { useEffect, useImperativeHandle, forwardRef, useRef } from "react";
+import { useEffect, useImperativeHandle, forwardRef, useRef } from "react";
 
 const CloudinaryUploadWidget = forwardRef(({ uwConfig, onUploadSuccess }, ref) => {
   const uploadWidgetRef = useRef(null);
@@ -10,8 +10,8 @@ const CloudinaryUploadWidget = forwardRef(({ uwConfig, onUploadSuccess }, ref) =
         uwConfig,
         (error, result) => {
           if (!error && result && result.event === "success") {
-            console.log("Upload successful:", result.info);
-            onUploadSuccess(result.info.public_id); // Notify parent component
+            // console.log("Upload successful:", result.info);
+            onUploadSuccess(result.info); // Notify parent component with the entire info object
           }
         }
       );

@@ -6,6 +6,6 @@ import { handleUserSignUpError } from "../middlewares/userError.middleware.js"
 const router = express.Router();
 
 router.get("/test", testapi);
-router.put("/update/:userId",verifyUser  , updateUser)
+router.put("/update/:userId",verifyUser, updateUser)
 router.use(handleUserSignUpError);
 export default router;

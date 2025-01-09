@@ -1,23 +1,33 @@
 import { useEffect, useState, useRef } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
-
+// import e from "express";
+import { updateFailure , updateStart , updateSucess } from "../redux/user/userSlice";
+import axios from "axios";
 export default function DashboardProfile() {
   const { currentUser } = useSelector((state) => state.user);
   const profilePicture = currentUser.profilePicture;
   const [formData, setFormData] = useState({
-    username: currentUser.username,
-    email: currentUser.email,
+    username:currentUser.username,
+    email:currentUser.email,
+    profilePicture:currentUser.profilePicture,
+    password:''
   });
-
+  const dispatch = useDispatch()
   const cloudName = import.meta.env.VITE_CLOUD_NAME;
   const uploadPreset = import.meta.env.VITE_CLOUD_PRESET_NAME; // Corrected the environment variable name
   const [imageURL, setImageURL] = useState(profilePicture);
   const uploadWidgetRef = useRef(null);
 
-  const handleImageChange = (publicId) => {
-    const newImageURL = `https://res.cloudinary.com/${cloudName}/image/upload/${publicId}`;
+  const handleImageChange = (info) => {
+    console.log(info.secure_url);
+    
+    // Use the secure_url from the info object
+    const newImageURL = info.secure_url;
+    
+    // Update the state with the new image URL
     setImageURL(newImageURL);
+    setFormData( {...formData , profilePicture:newImageURL})
   };
 
   const handleChange = (event) => {
@@ -32,11 +42,36 @@ export default function DashboardProfile() {
     cloudName,
     uploadPreset,
   };
+  console.log(currentUser._id)
+
+  const handleSubmit =  async (e) => {
+    e.preventDefault();
+    if(Object.keys(formData).length === 0){
+      return;
+    }
+    try {
+      dispatch(updateStart());
+      const response = await axios.put(`/api/user/update/${currentUser._id}`, formData);
+      if(!response.ok) {
+        dispatch(updateFailure())
+      }
+      dispatch(updateSucess(response.data))
+      
+    } catch (error) {
+      console.log(error.response.data.message);
+      
+      
+    }
+    
+  }
+
 
   return (
+    
+    
     <div className="flex flex-col w-full pt-10 align-middle gap-7 dark:bg-black dark:text-white min-h-screen">
       <h1 className="self-center text-3xl">Profile</h1>
-      <form className="place-self-center flex flex-col gap-7 w-2/3 md:w-5/12">
+      <form onSubmit={handleSubmit} className="place-self-center flex flex-col gap-7 w-2/3 md:w-5/12">
         <div className="self-center cursor-pointer">
           <img
             src={imageURL}
@@ -72,11 +107,13 @@ export default function DashboardProfile() {
             type="password"
             className="rounded-md placeholder:pl-3 placeholder:font-semibold p-1 border-2 border-emerald-500 bg-emerald-50 mt-1 dark:focus:bg-black text-black dark:focus:text-white"
             name="password"
+            onChange={handleChange}
             id="password"
             placeholder="Password"
           />
           <button
             type="submit"
+           
             className="border-emerald-300 bg-black text-emerald-200 dark:text-white active:scale-95 border-2 w-full py-2 mt-2 dark:bg-gradient-to-b dark:from-emerald-300 dark:to-emerald-600 rounded-lg text-xl"
           >
             Update
