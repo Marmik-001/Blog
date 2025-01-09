@@ -17,7 +17,6 @@ export const updateUser = async (request, response, next) => {
     }
     hashedPassword = await hashPassword(request.body.password);
   }
-  console.log(request.body.username);
   
 
   if (request.body.username) {
@@ -56,6 +55,14 @@ export const updateUser = async (request, response, next) => {
       const {password , ...rest} = updatedUser._doc 
       response.status(200).json(rest)
     } catch (error) {
-      next(error);
+      // console.log(error.keyPattern);
+      
+      
+      
+      if(error.code === 11000){
+        const duplicateKey = Object.keys(error.keyPattern)[0];
+        return  next(handleError(400, `${duplicateKey} already Exists`))
+      }
+      next(handleError(500 , 'Internal server error'))
     }
 };

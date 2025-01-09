@@ -4,6 +4,7 @@ import CloudinaryUploadWidget from "./CloudinaryUploadWidget";
 // import e from "express";
 import { updateFailure , updateStart , updateSucess } from "../redux/user/userSlice";
 import axios from "axios";
+import { set } from "mongoose";
 export default function DashboardProfile() {
   const { currentUser } = useSelector((state) => state.user);
   const profilePicture = currentUser.profilePicture;
@@ -18,7 +19,8 @@ export default function DashboardProfile() {
   const uploadPreset = import.meta.env.VITE_CLOUD_PRESET_NAME; // Corrected the environment variable name
   const [imageURL, setImageURL] = useState(profilePicture);
   const uploadWidgetRef = useRef(null);
-
+  const [errorMsg , setErrorMsg] = useState(null)
+  const [loadingMsg , setLoadingMsg] = useState(null)
   const handleImageChange = (info) => {
     console.log(info.secure_url);
     
@@ -46,7 +48,9 @@ export default function DashboardProfile() {
 
   const handleSubmit =  async (e) => {
     e.preventDefault();
+    setLoadingMsg('Updating User Info')
     if(Object.keys(formData).length === 0){
+      setLoadingMsg(null)
       return;
     }
     try {
@@ -56,10 +60,12 @@ export default function DashboardProfile() {
         dispatch(updateFailure())
       }
       dispatch(updateSucess(response.data))
-      
+      setLoadingMsg(null)
+      setErrorMsg(null)
+      window.alert('User Information Updated')
     } catch (error) {
-      console.log(error.response.data.message);
-      
+      setLoadingMsg(null)
+      setErrorMsg(error.response.data.message)
       
     }
     
@@ -116,8 +122,11 @@ export default function DashboardProfile() {
            
             className="border-emerald-300 bg-black text-emerald-200 dark:text-white active:scale-95 border-2 w-full py-2 mt-2 dark:bg-gradient-to-b dark:from-emerald-300 dark:to-emerald-600 rounded-lg text-xl"
           >
-            Update
+            { loadingMsg ? loadingMsg : 'Update'}
           </button>
+        </div>
+        <div className="text-red-500 font-semibold">
+          {errorMsg && `${errorMsg}`}
         </div>
       </form>
       <div className="text-red-500 flex justify-evenly px-5 mt-5">
